@@ -13,7 +13,7 @@ typedef struct {
 typedef struct hashmap *HashMap;
 
 HashMap create_hashmap ();
-int hash (char *key);
+unsigned char hash (char *key);
 char * get_value (HashMap h, char *key);
 void add_value (HashMap h, char *key, char *value);
 void remove_key (HashMap h, char *key);

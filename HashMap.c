@@ -15,7 +15,7 @@ HashMap create_hashmap () {
 	return h;
 }
 
-int hash (char *key) {}
+unsigned char hash (char *key) {}
 
 char * get_value (HashMap h, char *key) {}
 
