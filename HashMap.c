@@ -15,15 +15,36 @@ HashMap create_hashmap () {
 	return h;
 }
 
-unsigned char hash (char *key) {}
+unsigned char hash (char *key) {
+	char c = key[0];
 
-char * get_value (HashMap h, char *key) {}
+	for (int i = 1; i < strlen(key); ++i) {
+		c ^= key[i];
+	}
 
-void add_value (HashMap h, char *key, char *value) {}
+	return (unsigned char)c;
+}
 
-void remove_key (HashMap h, char *key) {}
+char * get_value (HashMap h, char *key) {
+	return h->values[hash(key)];
+}
 
-void remove_value (HashMap h, char *value) {}
+void add_value (HashMap h, char *key, char *value) {
+	strcpy(h->values[hash(key)], value);
+}
+
+void remove_key (HashMap h, char *key) {
+	strcpy(h->values[hash(key)], "\0");
+}
+
+void remove_value (HashMap h, char *value) {
+	for (int i = 0; i < 256; ++i) {
+		if (strcmp(h->values[i], value) == 0) {
+			strcpy(h->values[i], "\0");
+			return;
+		}
+	}
+}
 
 KeyValuePair enumerate (HashMap h) {}
 
